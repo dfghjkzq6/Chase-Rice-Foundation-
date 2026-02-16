@@ -1,266 +1,410 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chase Rice Foundation - Head Down, Eyes Up</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Chase Rice Foundation | Head Down, Eyes Up</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons CDN -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="style.css">
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        border: "hsl(var(--border))",
+                        input: "hsl(var(--input))",
+                        ring: "hsl(var(--ring))",
+                        background: "hsl(var(--background))",
+                        foreground: "hsl(var(--foreground))",
+                        primary: {
+                            DEFAULT: "hsl(var(--primary))",
+                            foreground: "hsl(var(--primary-foreground))",
+                        },
+                        secondary: {
+                            DEFAULT: "hsl(var(--secondary))",
+                            foreground: "hsl(var(--secondary-foreground))",
+                        },
+                        destructive: {
+                            DEFAULT: "hsl(var(--destructive))",
+                            foreground: "hsl(var(--destructive-foreground))",
+                        },
+                        muted: {
+                            DEFAULT: "hsl(var(--muted))",
+                            foreground: "hsl(var(--muted-foreground))",
+                        },
+                        accent: {
+                            DEFAULT: "hsl(var(--accent))",
+                            foreground: "hsl(var(--accent-foreground))",
+                        },
+                        popover: {
+                            DEFAULT: "hsl(var(--popover))",
+                            foreground: "hsl(var(--popover-foreground))",
+                        },
+                        card: {
+                            DEFAULT: "hsl(var(--card))",
+                            foreground: "hsl(var(--card-foreground))",
+                        },
+                    },
+                    borderRadius: {
+                        lg: "var(--radius)",
+                        md: "calc(var(--radius) - 2px)",
+                        sm: "calc(var(--radius) - 4px)",
+                    },
+                    fontFamily: {
+                        sans: ["Inter", "sans-serif"],
+                    },
+                },
+            },
+        }
+    </script>
 </head>
-<body>
+<body class="bg-background text-foreground font-sans antialiased">
     <!-- Navigation -->
-    <nav class="navbar">
-        <div class="container">
-            <div class="nav-brand">
-                <div class="logo">♥</div>
-                <span class="brand-text">Chase Rice Foundation</span>
+    <nav class="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+        <div class="container mx-auto flex h-16 items-center justify-between px-4 md:px-8">
+            <div class="flex items-center gap-2 cursor-pointer" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+                <div class="flex h-8 w-8 items-center justify-center rounded-full bg-primary text-primary-foreground">
+                    <i data-lucide="heart" class="h-4 w-4 fill-current"></i>
+                </div>
+                <span class="text-lg font-bold tracking-tight">Chase Rice Foundation</span>
             </div>
-            <div class="nav-menu">
-                <button class="nav-link" onclick="scrollToSection('about')">About</button>
-                <button class="nav-link" onclick="scrollToSection('program')">Program</button>
-                <button class="nav-link" onclick="scrollToSection('gallery')">Gallery</button>
-                <button class="nav-link" onclick="scrollToSection('contact')">Contact</button>
+            <div class="hidden md:flex items-center gap-6 text-sm font-medium">
+                <a href="#about" class="transition-colors hover:text-primary">About</a>
+                <a href="#program" class="transition-colors hover:text-primary">Program</a>
+                <a href="#gallery" class="transition-colors hover:text-primary">Gallery</a>
+                <a href="#contact" class="transition-colors hover:text-primary">Contact</a>
             </div>
-            <button class="btn-donate" onclick="scrollToSection('contact')">Donate</button>
+            <div class="flex items-center gap-4">
+                <button onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'})" class="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground ring-offset-background transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50">
+                    Donate
+                </button>
+            </div>
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="container">
-            <div class="hero-content">
-                <h1 class="hero-title">Head Down, Eyes Up</h1>
-                <p class="hero-subtitle">Keep Going</p>
-                <p class="hero-description">
-                    The Chase Rice Foundation is dedicated to empowering young musicians and supporting vulnerable communities through the transformative power of music education.
-                </p>
-                <div class="hero-buttons">
-                    <button class="btn btn-primary" onclick="scrollToSection('contact')">Get Involved →</button>
-                    <button class="btn btn-secondary" onclick="scrollToSection('program')">Learn More</button>
+    <main>
+        <!-- Hero Section -->
+        <section class="relative overflow-hidden py-24 md:py-32 bg-zinc-950 text-white">
+            <div class="container mx-auto px-4 md:px-8 relative z-10">
+                <div class="grid grid-cols-1 gap-12 lg:grid-cols-2 lg:items-center">
+                    <div class="flex flex-col gap-6">
+                        <div class="inline-flex w-fit items-center rounded-full border border-zinc-800 bg-zinc-900/50 px-3 py-1 text-sm font-medium text-zinc-400">
+                            <span class="mr-2 flex h-2 w-2 rounded-full bg-red-500"></span>
+                            Head Down, Eyes Up
+                        </div>
+                        <h1 class="text-4xl font-extrabold tracking-tight sm:text-5xl md:text-6xl lg:text-7xl">
+                            Keep <span class="text-red-500">Going</span>
+                        </h1>
+                        <p class="max-w-[600px] text-lg text-zinc-400 md:text-xl leading-relaxed">
+                            The Chase Rice Foundation is dedicated to empowering young musicians and supporting vulnerable communities through the transformative power of music education.
+                        </p>
+                        <div class="flex flex-wrap gap-4 pt-4">
+                            <button onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'})" class="inline-flex h-12 items-center justify-center rounded-md bg-white px-8 text-base font-medium text-black transition-colors hover:bg-zinc-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">
+                                Get Involved
+                                <i data-lucide="arrow-right" class="ml-2 h-4 w-4"></i>
+                            </button>
+                            <button onclick="document.getElementById('program').scrollIntoView({behavior: 'smooth'})" class="inline-flex h-12 items-center justify-center rounded-md border border-zinc-800 bg-transparent px-8 text-base font-medium text-white transition-colors hover:bg-zinc-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">
+                                Learn More
+                            </button>
+                        </div>
+                    </div>
+                    <div class="relative mx-auto lg:ml-auto">
+                        <div class="relative h-[300px] w-[300px] md:h-[400px] md:w-[400px] overflow-hidden rounded-2xl border border-zinc-800 shadow-2xl">
+                            <img src="image1.jpg" alt="Chase Rice Foundation" class="h-full w-full object-cover">
+                        </div>
+                        <!-- Decorative element -->
+                        <div class="absolute -bottom-6 -left-6 -z-10 h-32 w-32 rounded-full bg-red-500/20 blur-3xl"></div>
+                        <div class="absolute -top-6 -right-6 -z-10 h-32 w-32 rounded-full bg-blue-500/20 blur-3xl"></div>
+                    </div>
                 </div>
             </div>
-            <div class="hero-image">
-                <img src="image1.jpg" alt="Chase Rice Foundation Hero 1" class="hero-img" style="width: 300px !important; height: 300px !important; max-width: 300px !important; max-height: 300px !important; object-fit: cover; object-position: center;">
-            </div>
-        </div>
-    </section>
+            <!-- Background grid pattern -->
+            <div class="absolute inset-0 -z-0 bg-[linear-gradient(to_right,#1f2937_1px,transparent_1px),linear-gradient(to_bottom,#1f2937_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] opacity-20"></div>
+        </section>
 
-    <!-- About Section -->
-    <section id="about" class="about">
-        <div class="container">
-            <h2 class="section-title">Our Story</h2>
-            <div class="about-grid">
-                <div class="about-content">
-                    <h3 class="about-heading">From Adversity to Purpose</h3>
-                    <p class="about-text">
-                        Chase Rice's personal motto, "Head Down, Eyes Up... Keep Going," was born during his junior year at the University of North Carolina. After being injured during the opening game of a football season where he was poised to become a breakout star, Chase faced both physical rehabilitation and emotional challenges.
-                    </p>
-                    <p class="about-text">
-                        While rehabbing his ankle injury, he caught his reflection in the mirror in a way he never had before: his head was down, but his eyes were up—ready to do everything he could to fight for success and redemption. This moment of clarity transformed his perspective and eventually inspired the creation of the Chase Rice Foundation.
-                    </p>
-                    <p class="about-text">
-                        Today, this philosophy guides our mission to inspire people to "Keep Going" through extraordinarily difficult circumstances by keeping their head down and fighting every step of the way while focusing their vision on each individual challenge ahead.
-                    </p>
+        <!-- About Section -->
+        <section id="about" class="py-24 bg-background">
+            <div class="container mx-auto px-4 md:px-8">
+                <div class="flex flex-col items-center text-center mb-16">
+                    <h2 class="text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl">Our Story</h2>
+                    <div class="mt-4 h-1 w-20 bg-primary rounded-full"></div>
                 </div>
-                <div class="about-image">
-                    <img src="image2.jpg" alt="Chase Rice 2" class="about-img">
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Building Music Stars Program -->
-    <section id="program" class="program">
-        <div class="container">
-            <h2 class="section-title">Building Music Stars</h2>
-            <p class="section-subtitle">
-                Our flagship initiative to provide musical instruments and education to young people in underprivileged communities.
-            </p>
-
-            <div class="program-cards">
-                <div class="card">
-                    <div class="card-icon">🎸</div>
-                    <h3 class="card-title">Instruments Provided</h3>
-                    <p class="card-text">
-                        We provide guitars, drums, pianos, saxophones, violins, microphones, clarinets, and more to schools in need.
-                    </p>
-                </div>
-
-                <div class="card">
-                    <div class="card-icon">👨‍🎤</div>
-                    <h3 class="card-title">Young Musicians</h3>
-                    <p class="card-text">
-                        We empower young stars to build their interest in music and develop productive skills that keep them away from harmful activities.
-                    </p>
-                </div>
-
-                <div class="card">
-                    <div class="card-icon">❤️</div>
-                    <h3 class="card-title">Community Impact</h3>
-                    <p class="card-text">
-                        We focus on vulnerable children in poor and underprivileged places, especially those hindered by limited access to outside NGO support.
-                    </p>
+                <div class="grid grid-cols-1 gap-12 lg:grid-cols-2 lg:items-center">
+                    <div class="relative order-2 lg:order-1">
+                        <div class="overflow-hidden rounded-xl border bg-card shadow-sm">
+                            <img src="image2.jpg" alt="Our Story" class="aspect-[4/3] w-full object-cover">
+                        </div>
+                    </div>
+                    <div class="flex flex-col gap-6 order-1 lg:order-2">
+                        <h3 class="text-2xl font-semibold tracking-tight text-primary">From Adversity to Purpose</h3>
+                        <div class="space-y-4 text-muted-foreground leading-relaxed">
+                            <p>
+                                Chase Rice's personal motto, <span class="font-semibold text-foreground italic">"Head Down, Eyes Up... Keep Going,"</span> was born during his junior year at the University of North Carolina. After an injury sidelined his football career, Chase faced a pivotal moment of reflection.
+                            </p>
+                            <p>
+                                While rehabbing, he caught his reflection: his head was down, but his eyes were up—ready to fight for redemption. This philosophy now guides our mission to inspire people to "Keep Going" through life's most difficult circumstances.
+                            </p>
+                            <p>
+                                Today, we focus that same determination on empowering the next generation through music, providing the tools and vision needed to overcome their own challenges.
+                            </p>
+                        </div>
+                    </div>
                 </div>
             </div>
+        </section>
 
-            <div class="program-highlight">
-                <h3>Why Music Education Matters</h3>
-                <p>
-                    As a musician, Chase Rice understands the obstacles young people face when building a career or learning music. Music education doesn't just improve musical skills—it provides productive activity that helps young people stay engaged and away from harmful influences.
-                </p>
-                <p>
-                    Your donation directly supports providing instruments and music education to schools where young stars can build their interest in music and develop their talents.
-                </p>
+        <!-- Program Section -->
+        <section id="program" class="py-24 bg-zinc-50 dark:bg-zinc-900/50 border-y">
+            <div class="container mx-auto px-4 md:px-8">
+                <div class="flex flex-col items-center text-center mb-16">
+                    <h2 class="text-3xl font-bold tracking-tight sm:text-4xl">Building Music Stars</h2>
+                    <p class="mt-4 max-w-[700px] text-muted-foreground text-lg">
+                        Our flagship initiative provides musical instruments and education to young people in underprivileged communities.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                    <!-- Card 1 -->
+                    <div class="group relative overflow-hidden rounded-xl border bg-card p-8 shadow-sm transition-all hover:shadow-md hover:-translate-y-1">
+                        <div class="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                            <i data-lucide="music" class="h-6 w-6"></i>
+                        </div>
+                        <h3 class="mb-2 text-xl font-bold">Instruments Provided</h3>
+                        <p class="text-muted-foreground leading-relaxed">
+                            We provide guitars, drums, pianos, and more to schools in need, ensuring every child has access to quality instruments.
+                        </p>
+                    </div>
+
+                    <!-- Card 2 -->
+                    <div class="group relative overflow-hidden rounded-xl border bg-card p-8 shadow-sm transition-all hover:shadow-md hover:-translate-y-1">
+                        <div class="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                            <i data-lucide="users" class="h-6 w-6"></i>
+                        </div>
+                        <h3 class="mb-2 text-xl font-bold">Young Musicians</h3>
+                        <p class="text-muted-foreground leading-relaxed">
+                            We empower young stars to build their interest in music and develop productive skills that foster lifelong growth.
+                        </p>
+                    </div>
+
+                    <!-- Card 3 -->
+                    <div class="group relative overflow-hidden rounded-xl border bg-card p-8 shadow-sm transition-all hover:shadow-md hover:-translate-y-1">
+                        <div class="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                            <i data-lucide="globe" class="h-6 w-6"></i>
+                        </div>
+                        <h3 class="mb-2 text-xl font-bold">Community Impact</h3>
+                        <p class="text-muted-foreground leading-relaxed">
+                            Focusing on vulnerable children in underprivileged places, especially those with limited access to outside support.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="mt-16 rounded-2xl bg-primary p-8 md:p-12 text-primary-foreground shadow-lg">
+                    <div class="grid grid-cols-1 gap-8 lg:grid-cols-3 items-center">
+                        <div class="lg:col-span-2">
+                            <h3 class="text-2xl font-bold mb-4">Why Music Education Matters</h3>
+                            <p class="text-primary-foreground/90 text-lg leading-relaxed">
+                                Music education doesn't just improve musical skills—it provides productive activity that helps young people stay engaged and away from harmful influences. Your donation directly supports providing instruments to schools where young stars can build their talents.
+                            </p>
+                        </div>
+                        <div class="flex justify-center lg:justify-end">
+                            <button onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'})" class="inline-flex h-12 items-center justify-center rounded-md bg-white px-8 text-base font-medium text-primary transition-colors hover:bg-zinc-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white">
+                                Support Our Mission
+                            </button>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Gallery Section -->
-    <section id="gallery" class="gallery">
-        <div class="container">
-            <h2 class="section-title">Our Impact</h2>
-            <div class="gallery-grid">
-                <div class="gallery-item">
-                    <img src="image3.jpg" alt="Gallery Image 1" class="gallery-img">
+        <!-- Gallery Section -->
+        <section id="gallery" class="py-24 bg-background">
+            <div class="container mx-auto px-4 md:px-8">
+                <div class="flex flex-col items-center text-center mb-16">
+                    <h2 class="text-3xl font-bold tracking-tight sm:text-4xl">Our Impact</h2>
+                    <p class="mt-4 text-muted-foreground">Visual highlights of our journey and the lives we've touched.</p>
                 </div>
-                <div class="gallery-item">
-                    <img src="image4.jpg" alt="Gallery Image 2" class="gallery-img">
-                </div>
-                <div class="gallery-item">
-                    <img src="image5.jpg" alt="Gallery Image 3" class="gallery-img">
-                </div>
-                <div class="gallery-item">
-                    <img src="image1.jpg" alt="Gallery Image 4" class="gallery-img">
-                </div>
-                <div class="gallery-item">
-                    <img src="image2.jpg" alt="Gallery Image 5" class="gallery-img">
-                </div>
-                <div class="gallery-item">
-                    <img src="image3.jpg" alt="Gallery Image 6" class="gallery-img">
+                <div class="grid grid-cols-2 gap-4 md:grid-cols-3 lg:gap-6">
+                    <div class="group relative aspect-square overflow-hidden rounded-xl border shadow-sm">
+                        <img src="image3.jpg" alt="Gallery 1" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110">
+                    </div>
+                    <div class="group relative aspect-square overflow-hidden rounded-xl border shadow-sm">
+                        <img src="image4.jpg" alt="Gallery 2" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110">
+                    </div>
+                    <div class="group relative aspect-square overflow-hidden rounded-xl border shadow-sm">
+                        <img src="image5.jpg" alt="Gallery 3" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110">
+                    </div>
+                    <div class="group relative aspect-square overflow-hidden rounded-xl border shadow-sm">
+                        <img src="image1.jpg" alt="Gallery 4" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110">
+                    </div>
+                    <div class="group relative aspect-square overflow-hidden rounded-xl border shadow-sm">
+                        <img src="image2.jpg" alt="Gallery 5" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110">
+                    </div>
+                    <div class="group relative aspect-square overflow-hidden rounded-xl border shadow-sm">
+                        <img src="image3.jpg" alt="Gallery 6" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110">
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="contact">
-        <div class="container">
-            <h2 class="section-title">Get Involved</h2>
-            <p class="section-subtitle">
-                Interested in supporting the Chase Rice Foundation? We'd love to hear from you. Fill out the form below and we'll be in touch about donation opportunities.
-            </p>
-
-            <div class="contact-grid">
-                <!-- Contact Information -->
-                <div class="contact-info">
-                    <h3>Contact Information</h3>
-                    
-                    <div class="info-card">
-                        <div class="info-icon">✉️</div>
+        <!-- Contact Section -->
+        <section id="contact" class="py-24 bg-zinc-50 dark:bg-zinc-900/50 border-t">
+            <div class="container mx-auto px-4 md:px-8">
+                <div class="grid grid-cols-1 gap-12 lg:grid-cols-2">
+                    <div class="flex flex-col gap-8">
                         <div>
-                            <h4>Email</h4>
-                            <p>chasericeontheroad@gmail.com</p>
+                            <h2 class="text-3xl font-bold tracking-tight sm:text-4xl">Get Involved</h2>
+                            <p class="mt-4 text-muted-foreground text-lg">
+                                Interested in supporting the Chase Rice Foundation? We'd love to hear from you.
+                            </p>
+                        </div>
+                        
+                        <div class="space-y-6">
+                            <div class="flex items-start gap-4">
+                                <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border bg-background shadow-sm">
+                                    <i data-lucide="mail" class="h-5 w-5 text-primary"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold">Email</h4>
+                                    <p class="text-muted-foreground">chasericeontheroad@gmail.com</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-4">
+                                <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border bg-background shadow-sm">
+                                    <i data-lucide="phone" class="h-5 w-5 text-primary"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold">Phone</h4>
+                                    <p class="text-muted-foreground">(555) 123-4567</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="rounded-xl border bg-card p-6 shadow-sm">
+                            <h4 class="font-bold mb-4">Why Contact Us?</h4>
+                            <ul class="space-y-3">
+                                <li class="flex items-center gap-3 text-sm text-muted-foreground">
+                                    <i data-lucide="check-circle-2" class="h-4 w-4 text-primary"></i>
+                                    Learn about donation opportunities
+                                </li>
+                                <li class="flex items-center gap-3 text-sm text-muted-foreground">
+                                    <i data-lucide="check-circle-2" class="h-4 w-4 text-primary"></i>
+                                    Discuss partnership possibilities
+                                </li>
+                                <li class="flex items-center gap-3 text-sm text-muted-foreground">
+                                    <i data-lucide="check-circle-2" class="h-4 w-4 text-primary"></i>
+                                    Ask questions about our programs
+                                </li>
+                                <li class="flex items-center gap-3 text-sm text-muted-foreground">
+                                    <i data-lucide="check-circle-2" class="h-4 w-4 text-primary"></i>
+                                    Get involved as a volunteer
+                                </li>
+                            </ul>
                         </div>
                     </div>
 
-                    <div class="info-card">
-                        <div class="info-icon">📞</div>
-                        <div>
-                            <h4>Phone</h4>
-                            <p>(555) 123-4567</p>
+                    <div class="rounded-xl border bg-card p-8 shadow-lg">
+                        <div id="form-success" class="hidden flex flex-col items-center text-center py-12 animate-in fade-in zoom-in duration-300">
+                            <div class="mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-primary/10 text-primary">
+                                <i data-lucide="check" class="h-8 w-8"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold">Thank You!</h3>
+                            <p class="mt-2 text-muted-foreground">
+                                Your message has been received. We'll get back to you shortly.
+                            </p>
+                            <button onclick="resetForm()" class="mt-8 text-sm font-medium text-primary hover:underline">Send another message</button>
                         </div>
+
+                        <form id="contact-form" class="space-y-6">
+                            <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                                <div class="space-y-2">
+                                    <label for="name" class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">Full Name</label>
+                                    <input type="text" id="name" name="name" required placeholder="John Doe" class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50">
+                                </div>
+                                <div class="space-y-2">
+                                    <label for="email" class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">Email Address</label>
+                                    <input type="email" id="email" name="email" required placeholder="john@example.com" class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50">
+                                </div>
+                            </div>
+                            <div class="space-y-2">
+                                <label for="donation" class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">Donation Interest</label>
+                                <select id="donation" name="donation" class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50">
+                                    <option value="small">Small Contribution ($1-$100)</option>
+                                    <option value="medium">Medium Contribution ($100-$1,000)</option>
+                                    <option value="large">Large Contribution ($1,000+)</option>
+                                    <option value="other" selected>Other / Not Sure Yet</option>
+                                </select>
+                            </div>
+                            <div class="space-y-2">
+                                <label for="message" class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">Message</label>
+                                <textarea id="message" name="message" required rows="4" placeholder="How can you help?" class="flex min-h-[80px] w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"></textarea>
+                            </div>
+                            <button type="submit" class="inline-flex w-full items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground ring-offset-background transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 h-11">
+                                Send Message
+                            </button>
+                            <p class="text-xs text-center text-muted-foreground">
+                                We respect your privacy. Your information is safe with us.
+                            </p>
+                        </form>
                     </div>
-
-                    <div class="info-box">
-                        <h4>Why Contact Us?</h4>
-                        <ul class="info-list">
-                            <li>✓ Learn about donation opportunities</li>
-                            <li>✓ Discuss partnership possibilities</li>
-                            <li>✓ Ask questions about our programs</li>
-                            <li>✓ Get involved as a volunteer</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- Contact Form -->
-                <div class="contact-form-wrapper">
-                    <div id="form-success" class="success-message" style="display: none;">
-                        <div class="success-icon">✓</div>
-                        <h3>Thank You!</h3>
-                        <p>Your message has been received. We appreciate your interest in supporting the Chase Rice Foundation and will get back to you shortly.</p>
-                        <p class="success-note">Check your email for a confirmation message.</p>
-                    </div>
-
-                    <form id="contact-form" class="contact-form" onsubmit="handleFormSubmit(event)">
-                        <div class="form-group">
-                            <label for="name">Full Name *</label>
-                            <input type="text" id="name" name="name" required placeholder="Your name">
-                        </div>
-
-                        <div class="form-group">
-                            <label for="email">Email Address *</label>
-                            <input type="email" id="email" name="email" required placeholder="your@email.com">
-                        </div>
-
-                        <div class="form-group">
-                            <label for="phone">Phone Number (Optional)</label>
-                            <input type="tel" id="phone" name="phone" placeholder="(555) 123-4567">
-                        </div>
-
-                        <div class="form-group">
-                            <label for="donation">Donation Interest Level</label>
-                            <select id="donation" name="donation">
-                                <option value="small">Small Contribution ($1-$100)</option>
-                                <option value="medium">Medium Contribution ($100-$1,000)</option>
-                                <option value="large">Large Contribution ($1,000+)</option>
-                                <option value="other" selected>Other / Not Sure Yet</option>
-                            </select>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="message">Message *</label>
-                            <textarea id="message" name="message" required rows="6" placeholder="Tell us about your interest in supporting the Chase Rice Foundation and the Building Music Stars program..."></textarea>
-                        </div>
-
-                        <button type="submit" class="btn btn-submit">Send Message</button>
-                        <p class="form-privacy">We respect your privacy. Your information will only be used to contact you about donation opportunities.</p>
-                    </form>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+    </main>
 
     <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-section">
-                    <h4>Chase Rice Foundation</h4>
-                    <p>
-                        Empowering young musicians and supporting vulnerable communities through music education.
+    <footer class="border-t bg-background py-12 md:py-16">
+        <div class="container mx-auto px-4 md:px-8">
+            <div class="grid grid-cols-1 gap-12 md:grid-cols-4">
+                <div class="md:col-span-2">
+                    <div class="flex items-center gap-2 mb-4">
+                        <div class="flex h-6 w-6 items-center justify-center rounded-full bg-primary text-primary-foreground">
+                            <i data-lucide="heart" class="h-3 w-3 fill-current"></i>
+                        </div>
+                        <span class="text-lg font-bold tracking-tight">Chase Rice Foundation</span>
+                    </div>
+                    <p class="text-muted-foreground max-w-sm">
+                        Empowering young musicians and supporting vulnerable communities through the transformative power of music education.
                     </p>
                 </div>
-                <div class="footer-section">
-                    <h4>Quick Links</h4>
-                    <ul class="footer-links">
-                        <li><button onclick="scrollToSection('about')" class="footer-link">About</button></li>
-                        <li><button onclick="scrollToSection('program')" class="footer-link">Program</button></li>
-                        <li><button onclick="scrollToSection('gallery')" class="footer-link">Gallery</button></li>
+                <div>
+                    <h4 class="font-bold mb-4">Quick Links</h4>
+                    <ul class="space-y-2 text-sm text-muted-foreground">
+                        <li><a href="#about" class="hover:text-primary transition-colors">About Us</a></li>
+                        <li><a href="#program" class="hover:text-primary transition-colors">Our Programs</a></li>
+                        <li><a href="#gallery" class="hover:text-primary transition-colors">Impact Gallery</a></li>
+                        <li><a href="#contact" class="hover:text-primary transition-colors">Get Involved</a></li>
                     </ul>
                 </div>
-                <div class="footer-section">
-                    <h4>Contact</h4>
-                    <p>
-                        Email: chasericeontheroad@gmail.com<br>
-                        Phone: (555) 123-4567
+                <div>
+                    <h4 class="font-bold mb-4">Philosophy</h4>
+                    <p class="text-sm text-muted-foreground italic">
+                        "Head Down, Eyes Up... Keep Going."
                     </p>
+                    <div class="mt-6 flex gap-4">
+                        <a href="#" class="text-muted-foreground hover:text-primary"><i data-lucide="instagram" class="h-5 w-5"></i></a>
+                        <a href="#" class="text-muted-foreground hover:text-primary"><i data-lucide="twitter" class="h-5 w-5"></i></a>
+                        <a href="#" class="text-muted-foreground hover:text-primary"><i data-lucide="facebook" class="h-5 w-5"></i></a>
+                    </div>
                 </div>
             </div>
-            <div class="footer-bottom">
-                <p>&copy; 2026 Chase Rice Foundation. All rights reserved. Head Down, Eyes Up... Keep Going.</p>
+            <div class="mt-12 border-t pt-8 text-center text-sm text-muted-foreground">
+                <p>&copy; 2026 Chase Rice Foundation. All rights reserved.</p>
             </div>
         </div>
     </footer>
 
     <script src="script.js"></script>
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+    </script>
 </body>
 </html>
