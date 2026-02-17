@@ -1,44 +1,70 @@
-const setupContactForm = () => {
-    const form = document.getElementById('contact-form');
-    const successMessage = document.getElementById('form-success');
+<form id="contact-form" class="space-y-6">
 
-    if (!form) return;
+    <!-- Hidden metadata -->
+    <input type="hidden" name="_subject" value="New Chase Rice Foundation Inquiry">
+    <input type="hidden" name="_captcha" value="false">
 
-    form.addEventListener('submit', async (e) => {
-        e.preventDefault();
+    <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+        <div class="space-y-2">
+            <label for="name" class="text-sm font-medium">Full Name</label>
+            <input 
+                type="text" 
+                id="name" 
+                name="name" 
+                required 
+                placeholder="John Doe"
+                class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+            >
+        </div>
 
-        const submitBtn = form.querySelector('button[type="submit"]');
-        const originalBtnText = submitBtn.innerHTML;
+        <div class="space-y-2">
+            <label for="email" class="text-sm font-medium">Email Address</label>
+            <input 
+                type="email" 
+                id="email" 
+                name="email" 
+                required 
+                placeholder="john@example.com"
+                class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+            >
+        </div>
+    </div>
 
-        submitBtn.disabled = true;
-        submitBtn.innerHTML = "Sending...";
+    <div class="space-y-2">
+        <label for="donation" class="text-sm font-medium">Donation Interest</label>
+        <select 
+            id="donation" 
+            name="donation"
+            class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+        >
+            <option value="small">Small Contribution ($1-$100)</option>
+            <option value="medium">Medium Contribution ($100-$1,000)</option>
+            <option value="large">Large Contribution ($1,000+)</option>
+            <option value="other" selected>Other / Not Sure Yet</option>
+        </select>
+    </div>
 
-        try {
-            const formData = new FormData(form);
+    <div class="space-y-2">
+        <label for="message" class="text-sm font-medium">Message</label>
+        <textarea 
+            id="message" 
+            name="message" 
+            required 
+            rows="4"
+            placeholder="How can you help?"
+            class="flex min-h-[80px] w-full rounded-md border border-input bg-background px-3 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+        ></textarea>
+    </div>
 
-            const response = await fetch("https://formspree.io/f/mwvnbryz", {
-                method: "POST",
-                body: formData,
-                headers: {
-                    Accept: "application/json"
-                }
-            });
+    <button 
+        type="submit"
+        class="inline-flex w-full items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90 h-11"
+    >
+        Send Message
+    </button>
 
-            if (!response.ok) {
-                throw new Error("Network response was not ok");
-            }
+    <p class="text-xs text-center text-muted-foreground">
+        We respect your privacy. Your information is safe with us.
+    </p>
 
-            // Success UI
-            form.classList.add('hidden');
-            successMessage.classList.remove('hidden');
-            form.reset();
-
-        } catch (error) {
-            console.error("Submission error:", error);
-            alert("There was an error sending your message. Please try again.");
-        } finally {
-            submitBtn.disabled = false;
-            submitBtn.innerHTML = originalBtnText;
-        }
-    });
-};
+</form>
